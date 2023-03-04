@@ -1,18 +1,12 @@
-import React, {ReactElement} from 'react';
+import {CustomHeader} from "@/components/header/style";
+import Navbar from "@/components/navbar/navbar";
 
-type Props = {
-    tag: string
-    text: string
-}
-
-const Heading = ({tag, text}: Props) => {
-    let Tag = tag || 'h1'
-
+const Header = () => {
     return (
-        // <Tag>
-            {text}
-        // </Tag>
+        <CustomHeader>
+            <Navbar/>
+        </CustomHeader>
     );
 };
 
-export default Heading;
+export default Header;

@@ -1,20 +1,20 @@
 import React, {ChangeEvent} from 'react';
-import {CustomSelect} from "@/pages/converter";
-import {coinResponseType} from "@/pages";
+import {CoinType} from "@/types/types";
+import {CustomSelect} from "@/components/common/ui/drop-downs/convert-selector/style";
 
 type Props = {
     value?: number
     onChange: (value: number) => void
-    options?: coinResponseType[]
+    options?: CoinType[]
 }
 
-export const ConvertField = ({onChange, options, value}: Props) => {
+const ConvertSelector = ({onChange, options, value}: Props) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         onChange(+e.currentTarget.value)
     }
 
-    const mappedCoinOptions = options?.map((coin: coinResponseType) => {
+    const mappedCoinOptions = options?.map((coin: CoinType) => {
         return (
             <option
                 key={coin.id}
@@ -31,3 +31,5 @@ export const ConvertField = ({onChange, options, value}: Props) => {
         </CustomSelect>
     );
 };
+
+export default ConvertSelector

@@ -1,21 +1,25 @@
-import React from 'react';
-import {TableItemWrapper, TableRowWrapper} from "@/styles/style";
+import {TableItemWrapper, TableRowWrapper} from "./style";
 import {roundCoinValues} from "@/utils/round-coin-values";
-import {coinResponseType} from "@/pages";
+import {getToATH} from "@/utils/get-to-ath";
+import {getFromATH} from "@/utils/get-from-ath";
+import {CoinType} from "@/types/types";
+import useCoinInfo from "@/hooks/use-coin-info";
 
 type Props = {
-    rows: coinResponseType[]
+    rows?: CoinType[]
     isLoading: boolean
 }
 
 export const TableBody = ({rows, isLoading}: Props) => {
 
-    if(isLoading){
+    if (isLoading) {
         return <div> LOADING... </div>
     }
     return (
         <>
-            {rows.map((row: coinResponseType) => {
+            {rows && rows.map((row: CoinType) => {
+                const {isLoading:isCoinInfoLoading, data} = useCoinInfo(row.slug)
+                console.log(data?.data.price.USD, data?.data.athPrice.USD)
                     return (
                         <div key={row.id}>
                             <TableRowWrapper>
@@ -23,22 +27,22 @@ export const TableBody = ({rows, isLoading}: Props) => {
                                     {row.name}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.values.USD.price)}
+                                    $ {roundCoinValues(row.values.USD.price)}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.circulatingSupply)}
+                                    {row.symbol} {roundCoinValues(row.circulatingSupply)}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.circulatingSupply)}
+                                    $ {roundCoinValues(row.values.USD.marketCap)}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.circulatingSupply)}
+                                    {row.category}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.circulatingSupply)}
+                                    {isCoinInfoLoading ? 'Loading...':getToATH( data?.data.price.USD, data?.data.athPrice.USD) + '%'}
                                 </TableItemWrapper>
                                 <TableItemWrapper>
-                                    {roundCoinValues(row.circulatingSupply)}
+                                    {isCoinInfoLoading ? 'Loading...':-getFromATH( data?.data.price.USD, data?.data.athPrice.USD)+ '%'}
                                 </TableItemWrapper>
                             </TableRowWrapper>
                         </div>

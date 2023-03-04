@@ -1,27 +1,17 @@
-import React from 'react';
 import useSWR from "swr";
-import {fetcher} from "@/pages";
+import {fetcher} from "@/utils/fetcher";
 
-type Props = {
-    coinKey: string
-}
 
-export const UseCoinInfo = ({coinKey}:Props) => {
+const useCoinInfo = (coinKey: string) => {
 
     const {data, error, isLoading} = useSWR(
         `https://tstapi.cryptorank.io/v0/coins/${coinKey}`,
         fetcher)
 
-    console.log(data)
-    if(error){
-        return <div>Some error</div>
-    }
-    if(isLoading){
-        return <div>Loading...</div>
-    }
 
-    if(data){
-        return {data}
-    }
+    return {data, error, isLoading}
+
 };
+
+export default useCoinInfo
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import {TableTitleWrapper,TableHead} from "@/styles/style";
+import {TableTitleWrapper,TableHeadWrapper} from "./style";
 
-export const TableHeader = () => {
+export const TableHead = () => {
     return (
-        <TableHead>
+        <TableHeadWrapper>
             <TableTitleWrapper>NAME</TableTitleWrapper>
             <TableTitleWrapper>Price USD</TableTitleWrapper>
             <TableTitleWrapper>Circ. Supply</TableTitleWrapper>
@@ -11,7 +11,7 @@ export const TableHeader = () => {
             <TableTitleWrapper>Category</TableTitleWrapper>
             <TableTitleWrapper>To ATH</TableTitleWrapper>
             <TableTitleWrapper>From ATH</TableTitleWrapper>
-        </TableHead>
+        </TableHeadWrapper>
     );
 };
 
