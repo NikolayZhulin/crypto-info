@@ -1,9 +1,4 @@
-import styled from "styled-components";
-import Link from "next/link";
-
-export const CustomLink = styled(Link)<{ active: string }>`
-  color: ${props => props.active ? 'aqua' : 'white'};
-`
+import styled from 'styled-components'
 
 export const CustomNav = styled.nav`
   width: 100%;
