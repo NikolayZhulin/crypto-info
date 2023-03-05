@@ -16,13 +16,15 @@
 
 ## Getting Started
 
-Install dependencies
+1.Install dependencies
 
 ```bash
 yarn
 ```
 
-Run the development server:
+2.Rename .env.dist to .env.local
+
+3.Run the development server:
 
 ```bash
 yarn dev
